@@ -1,5 +1,5 @@
 @php
-$data = App\setting::first();
+// $data = App\setting::first();
 
 @endphp
 
@@ -7,7 +7,8 @@ $data = App\setting::first();
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>   {{  isset($data->title) ? $data->title : ' Admin Dashboard' }}</title>
+  {{-- <title>   {{  isset($data->title) ? $data->title : ' Admin Dashboard' }}</title> --}}
+  <title>   Admin Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -80,11 +81,14 @@ $data = App\setting::first();
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-2 mb-2 d-flex">
         <div class="image mt-2">
-          <img src="{{ isset($data->logo) ? asset('uploads/logo/' . $data->logo) : asset('logo.png') }}" class="img-circle elevation-2 mt-lg-0 " alt="User Image">
+          <img src="{{  asset('logo.png') }}" class="img-circle elevation-2 mt-lg-0 " alt="User Image">
+          {{-- <img src="{{ isset($data->logo) ? asset('uploads/logo/' . $data->logo) : asset('logo.png') }}" class="img-circle elevation-2 mt-lg-0 " alt="User Image"> --}}
         </div>
+        @if(Auth::check())
         <div class="info">
           <a href="#" class="d-block my-auto">{{Auth::user()->name}}</a>
         </div>
+        @endif
       </div>
 
       <!-- Sidebar Menu -->
@@ -166,9 +170,8 @@ $data = App\setting::first();
               </li>
             </ul>
           </li> --}}
-            <li class="nav-item has-treeview">
+            {{-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link {{ request()->is('admin/rejected_deposits') || request()->is('admin/pending_deposits') ||  request()->is('admin/completed_deposits')  ? 'active' : '' }}">
-              {{-- <i class="nav-icon fas fa-wallet"></i> --}}
               <i class="fas fa-dollar-sign nav-icon"></i>
               <p> Deposit Payments <i class="fas fa-angle-left right"></i> </p>
             </a>
@@ -192,7 +195,7 @@ $data = App\setting::first();
                 </a>
               </li>
             </ul>
-          </li>
+          </li> --}}
           <li class="nav-item ">
             <a href="{{route('admin.transactions')}}" class="nav-link {{ request()->is('admin/transactions') ? 'active' : '' }}">
               <i class="nav-icon fas fa-wallet"></i>
@@ -217,9 +220,8 @@ $data = App\setting::first();
             </a>
           </li> --}}
 
-          <li class="nav-item has-treeview">
+          {{-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link {{ request()->is('admin/spot_trading_history') || request()->is('admin/future_trading_history') ? 'active' : '' }}">
-              {{-- <i class="nav-icon fas fa-wallet"></i> --}}
               <i class="fas fa-exchange-alt nav-icon"></i>
               <p>
                  Trade History
@@ -242,7 +244,7 @@ $data = App\setting::first();
 
 
             </ul>
-          </li>
+          </li> --}}
 
 
 
@@ -361,13 +363,13 @@ $data = App\setting::first();
                   <p>Address Setting</p>
                 </a>
               </li>
-
+{{-- 
               <li class="nav-item">
                 <a href="{{route('admin.website_setting')}}" class="nav-link {{ request()->is('admin/website_setting') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Website Setting</p>
                 </a>
-              </li>
+              </li> --}}
             </ul>
           </li>
           <li class="nav-item ">
