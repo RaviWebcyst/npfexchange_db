@@ -1,7 +1,8 @@
 
+import { createRouter, createWebHistory } from 'vue-router';
 import forget_password from './components/pages/forget_password.vue'
-import Vue from 'vue';
-import Router from 'vue-router';
+//import Vue from 'vue';
+//import Router from 'vue-router';
 
 import home from './components/pages/dashboard.vue';
 import index from './components/pages/index.vue';
@@ -43,7 +44,7 @@ import future_trade from './components/pages/future_trade.vue';
 
 var prefix = "/exchange";
 
-Vue.use(Router);
+//Vue.use(Router);
 const routes = [
 
 //   {
@@ -294,10 +295,17 @@ const routes = [
 
 ];
 
-const router = new Router({
-        mode:'history',
-        routes
+//const router = new Router({
+  //      mode:'history',
+    //    routes
+//});
+
+
+   const router = createRouter({
+    history: createWebHistory(),
+    routes,
 });
+
 
 router.beforeEach((to, from, next) => {
 	if (to.matched.some(record => record.meta.requiresAuth)) {

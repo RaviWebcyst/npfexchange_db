@@ -3,10 +3,16 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+import './bootstrap';
+import { createApp } from 'vue';
 
-require('./bootstrap');
 
-window.Vue = require('vue');
+//require('./bootstrap');
+
+//window.Vue = require('vue');
+
+
+const app = createApp({});
 
 
 // import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
@@ -26,13 +32,13 @@ import Toaster from 'v-toaster';
 import 'v-toaster/dist/v-toaster.css'
 
 // optional set default imeout, the default is 10000 (10 seconds).
-Vue.use(Toaster, {timeout: 5000})
+app.use(Toaster, {timeout: 5000})
 
-Vue.use(Clipboard);
-Vue.use(VueCountdownTimer);
+app.use(Clipboard);
+app.use(VueCountdownTimer);
 
 import VueQRCodeComponent from 'vue-qrcode-component'
-Vue.component('qr-code', VueQRCodeComponent)
+app.component('qr-code', VueQRCodeComponent)
 
 
 import moment from 'moment-timezone';
@@ -51,12 +57,12 @@ moment.tz.setDefault('Asia/Kolkata');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('mainapp', require('./components/mainapp.vue').default);
-Vue.component('sidebar', require('./components/pages_old/sidebar.vue').default);
-Vue.component('Header', require('./components/pages/header.vue').default);
-// Vue.component('Spinner', require('./components/pages/Spinner.vue').default);
-Vue.component('Footer', require('./components/pages/footer.vue').default);
+app.component('example-component', require('./components/ExampleComponent.vue'));
+app.component('mainapp', require('./components/mainapp.vue'));
+app.component('sidebar', require('./components/pages_old/sidebar.vue'));
+app.component('Header', require('./components/pages/header.vue'));
+// Vue.component('Spinner', require('./components/pages/Spinner.vue'));
+app.component('Footer', require('./components/pages/footer.vue'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -64,8 +70,8 @@ Vue.component('Footer', require('./components/pages/footer.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
-    router
-});
+app.use(router);
+
+// Mount the app
+app.mount('#app');
 
